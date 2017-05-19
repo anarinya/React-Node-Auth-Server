@@ -1,5 +1,6 @@
 const express = require('express');
 const http = require('http');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./router');
@@ -17,6 +18,10 @@ app.use(morgan('combined'));
 
 // parse incoming requests as json, regardless of the request type
 app.use(bodyParser.json({ type: '*/*' }));
+
+// use CORS - allow connections from anywhere
+// TBD: change for only particular domain
+app.use(cors());
 
 // link defined routes to the app
 router(app);
